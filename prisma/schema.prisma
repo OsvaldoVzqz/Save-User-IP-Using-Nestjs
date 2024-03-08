@@ -1,0 +1,22 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  userId    String    @unique
+  ipRecords IPRecord[]
+}
+
+model IPRecord {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user") 
+  ip        String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
