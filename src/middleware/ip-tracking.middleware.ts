@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware, Inject } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { BatchLoggerService } from 'src/services/batch-logger/batch-logger.service'; 
+import { BatchLoggerService } from '../services/batch-logger/batch-logger.service';
 
 @Injectable()
 export class IpTrackingMiddleware implements NestMiddleware {
