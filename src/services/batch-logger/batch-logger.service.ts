@@ -15,7 +15,7 @@ export class BatchLoggerService implements OnModuleDestroy {
   public logRequest(userId: string, ip: string): void {
     if (!this.dataStore.has(userId)) {
       this.dataStore.set(userId, new Set());
-    }goit
+    }
     this.dataStore.get(userId).add(ip);
   }
 
