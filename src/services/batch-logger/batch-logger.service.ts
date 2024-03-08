@@ -1,5 +1,5 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import { PrismaService } from '/home/osvaldo/beast-brawl-backend/src/services/prisma.services'; 
+import { PrismaService } from '../prisma.services'; 
 
 @Injectable()
 export class BatchLoggerService implements OnModuleDestroy {
