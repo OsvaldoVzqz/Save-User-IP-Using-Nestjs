@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY prisma ./prisma/
 RUN npm install
-RUN npm run prisma:generate
+RUN npx prisma generate
+RUN npm run build
 
 # Copia el resto del código fuente y construye el proyecto
 COPY . .
