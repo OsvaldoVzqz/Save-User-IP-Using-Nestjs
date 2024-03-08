@@ -32,5 +32,11 @@ RUN npm install --only=production
 # Copia los archivos construidos desde la etapa de construcción
 COPY --from=builder /usr/src/app/dist ./dist
 
-# Comando para ejecutar la aplicación
-CMD ["node", "dist/main"]
+# Copia la carpeta prisma y su contenido en la etapa de ejecución
+COPY --from=builder /usr/src/app/prisma ./prisma
+
+# Copia el cliente de Prisma generado
+COPY --from=builder /usr/src/app/node_modules/@prisma/client ./node_modules/@prisma/client
+
+
+CMD ["sh", "-c", "npx prisma generate --schema=./prisma/schema.prisma && node dist/main"]
