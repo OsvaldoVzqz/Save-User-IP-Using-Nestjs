@@ -9,14 +9,14 @@ generator client {
 
 model User {
   id        Int       @id @default(autoincrement())
-  userId    Int       @unique
+  userId    String    @unique
   ipRecords IPRecord[]
 }
 
 model IPRecord {
   id        Int      @id @default(autoincrement())
-  userId    Int
+  userId    String
   ip        String
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [userId])
 }

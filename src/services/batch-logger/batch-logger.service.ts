@@ -25,7 +25,7 @@ export class BatchLoggerService implements OnModuleDestroy {
     this.dataStore.forEach((ips, userId) => {
       ips.forEach((ip) => {
         records.push({
-          userId:parseInt(userId),
+          userId,
           ip,
           createdAt: new Date(), 
         });
