@@ -15,8 +15,9 @@ model User {
 
 model IPRecord {
   id        Int      @id @default(autoincrement())
-  userId    Int      @map("user") 
+  userId    String   
   ip        String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [userId])
   createdAt DateTime @default(now())
 }
+
