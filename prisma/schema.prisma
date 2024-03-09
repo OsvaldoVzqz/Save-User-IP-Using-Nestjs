@@ -9,14 +9,14 @@ generator client {
 
 model User {
   id        Int       @id @default(autoincrement())
-  userId    String    @unique
+  userId    Int       @unique
   ipRecords IPRecord[]
 }
 
 model IPRecord {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      // Esta es la clave foránea que referencia a User.id
+  userId    Int
   ip        String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
