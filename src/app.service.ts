@@ -7,7 +7,7 @@ export class AppService {
       <!DOCTYPE html>
       <html>
       <head>
-          <title>Fondo de Pantalla Completa</title>
+          <title>Kuroro Beast Brawl</title>
           <style>
               body, html {
                   height: 100%;
