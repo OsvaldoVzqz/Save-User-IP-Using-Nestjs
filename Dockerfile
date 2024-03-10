@@ -38,5 +38,5 @@ COPY --from=builder /usr/src/app/prisma ./prisma
 # Copia el cliente de Prisma generado
 COPY --from=builder /usr/src/app/node_modules/@prisma/client ./node_modules/@prisma/client
 
-
+# Comando para ejecutar la aplicación, incluyendo la generación del cliente de Prisma
 CMD ["sh", "-c", "npx prisma generate --schema=./prisma/schema.prisma && node dist/main"]
