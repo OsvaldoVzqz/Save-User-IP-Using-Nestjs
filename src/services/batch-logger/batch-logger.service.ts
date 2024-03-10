@@ -3,7 +3,7 @@ import { PrismaService } from '../prisma.services';
 
 @Injectable()
 export class BatchLoggerService implements OnModuleDestroy {
-  private dataStore: Map<string, Set<string>> = new Map();
+  private dataStore: Map<number, Set<string>> = new Map();
 
   constructor(private prismaService: PrismaService) {
     setInterval(() => {
@@ -11,7 +11,7 @@ export class BatchLoggerService implements OnModuleDestroy {
     }, 60000);
   }
 
-  public logRequest(userId: string, ip: string): void {
+  public logRequest(userId: number, ip: string): void {
     if (!this.dataStore.has(userId)) {
       this.dataStore.set(userId, new Set());
     }
@@ -25,6 +25,7 @@ export class BatchLoggerService implements OnModuleDestroy {
       ips.forEach((ip) => {
         records.push({
           userId, 
+          ip,   
           createdAt: new Date(),
         });
       });
@@ -37,11 +38,7 @@ export class BatchLoggerService implements OnModuleDestroy {
           skipDuplicates: true,
         });
       } catch (error) {
-        if (error.code === 'P2003') {
-          console.error('Foreign key constraint failed, userId not found in the database.');
-        } else {
-          console.error('Error writing to the database', error);
-        }
+        console.error('Error al escribir en la base de datos', error);
       }
     }
 
@@ -52,4 +49,3 @@ export class BatchLoggerService implements OnModuleDestroy {
     await this.writeBatchToDatabase();
   }
 }
-
