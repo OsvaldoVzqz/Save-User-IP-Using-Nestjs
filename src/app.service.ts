@@ -14,7 +14,7 @@ export class AppService {
                   margin: 0;
               }
               .background {
-                  background-image: url('/images/KURORO-BACK.png');
+                  background-image: url('https://www.kurorogit .com/build/_assets/bb-poster-square-BBNXDVUH.png');
                   background-position: center;
                   background-repeat: no-repeat;
                   background-size: cover;
